@@ -1,0 +1,69 @@
+server:
+  port: 8222
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: inventory-service
+          uri: lb://inventory-service
+          predicates:
+            - Path=/api/inventory/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: inventory-service
+                fallbackUri: forward:/cb/inventoryServiceFallBack
+        - id: pharmacy-service
+          uri: lb://pharmacy-service
+          predicates:
+            - Path=/api/pharmacy/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: pharmacy-service
+                fallbackUri: forward:/cb/pharmacyServiceFallBack
+        - id: rendez-vous-service
+          uri: lb://rendez-vous-service
+          predicates:
+            - Path=/api/rendezvous/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: rendez-vous-service
+                fallbackUri: forward:/cb/rendezVousServiceFallBack
+        - id: report-service
+          uri: lb://report-service
+          predicates:
+            - Path=/api/report/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: report-service
+                fallbackUri: forward:/cb/reportServiceFallBack
+        - id: notification-service
+          uri: lb://notification-service
+          predicates:
+            - Path=/api/notif/**
+          filters:
+            - name: CircuitBreaker
+              args:
+                name: notification-service
+                fallbackUri: forward:/cb/notificationServiceFallBack
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/Pharmacie-Realm
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/pharmacie
+    username: postgres
+    password: admin
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
