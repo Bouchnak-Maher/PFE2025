@@ -16,23 +16,15 @@ import org.springframework.web.cors.CorsConfiguration;
 public class SecurityConfig {
 
     @Bean
-    public SecurityWebFilterChain springSecurityFilterChain(ServerHttpSecurity http) {
-        http.cors(cors -> cors.configurationSource(request -> {
-            CorsConfiguration conf = new CorsConfiguration();
-            conf.addAllowedOrigin("http://localhost:4200");
-            conf.addAllowedMethod("GET");
-            conf.addAllowedMethod("POST");
-            conf.addAllowedMethod("DELETE");
-            conf.addAllowedMethod("PUT");
-            conf.addAllowedHeader(CorsConfiguration.ALL);
-            return conf;
-        })).csrf(ServerHttpSecurity.CsrfSpec::disable).authorizeExchange(requests -> requests
-                .pathMatchers(
-                        "/eureka/**",
-                        "/actuator/**")
-                .permitAll()
-                .anyExchange().authenticated());
-        http.oauth2ResourceServer().jwt();
+    public SecurityWebFilterChain securityWebFilterChain(ServerHttpSecurity http) {
+        http
+                .csrf(ServerHttpSecurity.CsrfSpec::disable)
+                .authorizeExchange(ex -> ex
+
+                        .anyExchange().authenticated()                    // token required
+                )
+                .oauth2ResourceServer(oauth -> oauth.jwt()); // enable JWT token validation
+
         return http.build();
     }
 

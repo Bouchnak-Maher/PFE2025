@@ -12,7 +12,15 @@
         <option value="$PROJECT_DIR$/rendez-vous-service/pom.xml" />
         <option value="$PROJECT_DIR$/api-gatway/pom.xml" />
         <option value="$PROJECT_DIR$/notification-service/pom.xml" />
+        <option value="$PROJECT_DIR$/Reclamation/pom.xml" />
       </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/pharmacy-service/pom.xml" />
+        <option value="$PROJECT_DIR$/rendez-vous-service/pom.xml" />
+        <option value="$PROJECT_DIR$/report-service/pom.xml" />
+      </set>
     </option>
     <option name="workspaceImportForciblyTurnedOn" value="true" />
   </component>
