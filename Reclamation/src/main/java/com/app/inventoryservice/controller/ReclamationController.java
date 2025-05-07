@@ -57,4 +57,8 @@ public class ReclamationController {
         return ResponseEntity.ok(reclamationService.updateReclamation(id, updated, username));
     }
 
+    @GetMapping("/employee-count")
+    public long getEmployeeCountWithReclamations() {
+        return reclamationService.countEmployeesWithReclamations();
+    }
 }

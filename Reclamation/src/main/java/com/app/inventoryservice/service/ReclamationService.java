@@ -86,5 +86,9 @@ public class ReclamationService {
         return reclamationRepository.save(existing);
     }
 
+    public long countEmployeesWithReclamations() {
+        return reclamationRepository.countDistinctEmployeesWithReclamations();
+    }
+
 }
 
