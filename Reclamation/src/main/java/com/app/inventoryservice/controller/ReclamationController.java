@@ -39,7 +39,7 @@ public class ReclamationController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id, @RequestParam String username) {
-        reclamationService.deleteReclamation(id, username);
+        reclamationService.deleteReclamation(id);
         return ResponseEntity.ok().build();
     }
 

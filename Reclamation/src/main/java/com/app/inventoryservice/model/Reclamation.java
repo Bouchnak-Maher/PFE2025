@@ -32,4 +32,7 @@ public class Reclamation {
 
     @OneToOne(mappedBy = "reclamation", cascade = CascadeType.ALL)
     private Tache tache;
+
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+    private Facture facture;
 }

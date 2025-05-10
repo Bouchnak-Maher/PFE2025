@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ReclamationDto {
+public class ReclamationForGetDto {
     private Long id;
     private String sujet;
     private String description;
@@ -20,6 +20,6 @@ public class ReclamationDto {
     private String type;
     private String createdBy;
     private LocalDateTime dateCreation;
-    private Long tacheId;
+    private TacheDto tache;
     private Long factureId;
 }

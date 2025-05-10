@@ -53,11 +53,10 @@ public class ReclamationService {
         return reclamationRepository.findById(id);
     }
 
-    public void deleteReclamation(Long id, String username) {
+    public void deleteReclamation(Long id) {
         Reclamation r = reclamationRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Réclamation non trouvée"));
-        if (!r.getCreatedBy().equals(username))
-            throw new RuntimeException("Non autorisé");
+
         if (r.getStatus() != EtatReclamation.ENVOYE)
             throw new RuntimeException("Impossible de supprimer cette réclamation");
         reclamationRepository.deleteById(id);
