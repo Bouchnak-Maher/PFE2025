@@ -5,6 +5,7 @@ import com.app.inventoryservice.enums.EtatReclamation;
 import com.app.inventoryservice.model.Reclamation;
 import com.app.inventoryservice.repository.ReclamationRepository;
 import com.app.inventoryservice.service.Mapper.ReclamationMapper;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,7 @@ public class ReclamationService {
 
         return ReclamationMapper.toDto(savedReclamation);
     }
-
+    @Transactional
     public List<ReclamationDto> getUserReclamations(String username) {
         List<Reclamation> reclamations = reclamationRepository.findByCreatedBy(username);
 

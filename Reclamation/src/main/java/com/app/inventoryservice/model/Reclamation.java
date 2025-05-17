@@ -19,6 +19,7 @@ public class Reclamation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String sujet;
+    @Lob
     private String description;
 
     @Enumerated(EnumType.STRING)
