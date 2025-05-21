@@ -92,6 +92,7 @@ public class TacheService {
 
         tacheRepository.deleteById(id);
     }
+    @Transactional
     public List<TacheDto> getByAssignee(String assigneeId) {
         // Fetch all Tache entities for the given assigneeId
         List<Tache> taches = tacheRepository.findByUserId(assigneeId);
